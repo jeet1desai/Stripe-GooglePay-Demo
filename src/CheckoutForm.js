@@ -10,16 +10,18 @@ export default function CheckoutForm() {
   const elements = useElements();
 
   const [message, setMessage] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
 
+ 
   useEffect(() => {
-    if (!stripe) {
-      return;
-    }
+    // if (!stripe) {
+    //   return;
+    // }
 
     const clientSecret = new URLSearchParams(window.location.search).get(
       "payment_intent_client_secret"
     );
+
+    console.log(clientSecret);
 
     if (!clientSecret) {
       return;
@@ -50,8 +52,6 @@ export default function CheckoutForm() {
       return;
     }
 
-    setIsLoading(true);
-
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
@@ -64,17 +64,17 @@ export default function CheckoutForm() {
     } else {
       setMessage("An unexpected error occured.");
     }
-
-    setIsLoading(false);
   };
+
+  console.log(stripe, elements, PaymentElement);
 
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
       <PaymentElement id="payment-element" />
 
-      <button disabled={isLoading || !stripe || !elements} id="submit">
+      <button disabled={!stripe || !elements} id="submit">
         <span id="button-text">
-          {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
+         Pay now
         </span>
       </button>
 
