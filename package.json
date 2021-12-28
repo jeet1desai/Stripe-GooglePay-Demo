@@ -1,14 +1,17 @@
 {
-  "name": "stripe",
+  "name": "stripe-demo",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@stripe/react-stripe-js": "^1.7.0",
+    "@stripe/stripe-js": "^1.22.0",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
+    "stripe": "^8.195.0",
     "web-vitals": "^2.1.2"
   },
   "scripts": {
