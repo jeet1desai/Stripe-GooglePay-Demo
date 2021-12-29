@@ -13,15 +13,13 @@ export default function CheckoutForm() {
 
  
   useEffect(() => {
-    // if (!stripe) {
-    //   return;
-    // }
+    if (!stripe) {
+      return;
+    }
 
     const clientSecret = new URLSearchParams(window.location.search).get(
       "payment_intent_client_secret"
     );
-
-    console.log(clientSecret);
 
     if (!clientSecret) {
       return;
@@ -65,8 +63,6 @@ export default function CheckoutForm() {
       setMessage("An unexpected error occured.");
     }
   };
-
-  console.log(stripe, elements, PaymentElement);
 
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
